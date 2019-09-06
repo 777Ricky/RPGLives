@@ -11,8 +11,9 @@ import java.util.UUID;
 public class Utils {
 
     public static HashMap<UUID, Integer> lives = new HashMap<>();
-    public static HashMap<UUID, Integer> maxlives = new HashMap<>();
+    public static  HashMap<UUID, Integer> maxlives = new HashMap<>();
     public static HashMap<UUID, Integer> regentime = new HashMap<>();
+
 
     public static String replaceColors(String message) {
         String string = message.replaceAll("&", "§");

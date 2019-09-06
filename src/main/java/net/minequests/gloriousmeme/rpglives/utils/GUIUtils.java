@@ -14,10 +14,12 @@ import java.util.ArrayList;
  */
 public class GUIUtils {
 
-    private Inventory livesShop = Bukkit.getServer().createInventory(null, 27, Utils.replaceColors("&aLife Shop"));
+    private Inventory livesShop = Bukkit.getServer().createInventory(null, 27, Utils.replaceColors(
+            RPGLives.get().getConfig().getString("ShopName")));
 
     {
-        ItemStack buyLife = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 5);
+        ItemStack buyLife = new ItemStack(Material.valueOf(RPGLives.get().getConfig().getString("ShopBuyItem")), 1,
+                Short.valueOf(RPGLives.get().getConfig().getString("ShopBuyItemData")));
         ItemMeta buyLifeMeta = buyLife.getItemMeta();
         buyLifeMeta.setDisplayName(Utils.replaceColors(RPGLives.get().getConfig().getString("BuyItemName")));
         ArrayList<String> buyLifeLore = new ArrayList<>();
@@ -25,12 +27,14 @@ public class GUIUtils {
         buyLifeMeta.setLore(buyLifeLore);
         buyLife.setItemMeta(buyLifeMeta);
 
-        ItemStack closeGUI = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 14);
+        ItemStack closeGUI = new ItemStack(Material.valueOf(RPGLives.get().getConfig().getString("ShopCloseItem")), 1,
+                Short.valueOf(RPGLives.get().getConfig().getString("ShopCloseItemData")));
         ItemMeta closeGUIMeta = closeGUI.getItemMeta();
         closeGUIMeta.setDisplayName(Utils.replaceColors(RPGLives.get().getConfig().getString("CloseItemName")));
         closeGUI.setItemMeta(closeGUIMeta);
 
-        ItemStack borders = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 3);
+        ItemStack borders = new ItemStack(Material.valueOf(RPGLives.get().getConfig().getString("ShopBorderItem")), 1,
+                Short.valueOf(RPGLives.get().getConfig().getString("ShopBorderItemData")));
         ItemMeta borderMeta = borders.getItemMeta();
         borderMeta.setDisplayName(Utils.replaceColors(RPGLives.get().getConfig().getString("BorderName")));
         borders.setItemMeta(borderMeta);

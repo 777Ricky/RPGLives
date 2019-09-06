@@ -6,7 +6,7 @@
 
     <groupId>net.minequests.gloriousmeme.rpglives</groupId>
     <artifactId>RPGLives</artifactId>
-    <version>2.3.9</version>
+    <version>2.4.3</version>
 
     <build>
         <plugins>
@@ -38,45 +38,59 @@
     <dependencies>
 
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-1.12</artifactId>
-            <version>1.12</version>
-            <scope>provided</scope>
+            <groupId>sample75</groupId>
+            <artifactId>com.sample426</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/resources/spigot-1.13.2.jar</systemPath>
         </dependency>
 
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-1.11.2</artifactId>
-            <version>1.11.2</version>
-            <scope>provided</scope>
+            <groupId>sample74</groupId>
+            <artifactId>com.sample425</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/resources/spigot-1.12.jar</systemPath>
         </dependency>
 
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-1.10.2</artifactId>
-            <version>1.10.2</version>
-            <scope>provided</scope>
+            <groupId>sample73</groupId>
+            <artifactId>com.sample424</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/resources/spigot-1.11.2.jar</systemPath>
         </dependency>
 
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-1.9.4</artifactId>
-            <version>1.9.4</version>
-            <scope>provided</scope>
+            <groupId>sample72</groupId>
+            <artifactId>com.sample423</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/resources/spigot-1.10.2.jar</systemPath>
         </dependency>
 
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-1.8.8</artifactId>
-            <version>1.8.8</version>
-            <scope>provided</scope>
+            <groupId>sample71</groupId>
+            <artifactId>com.sample422</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/resources/spigot-1.9.4.jar</systemPath>
         </dependency>
 
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-1.8</artifactId>
-            <version>1.8</version>
-            <scope>provided</scope>
+            <groupId>sample70</groupId>
+            <artifactId>com.sample421</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/resources/spigot-1.8.8.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>sample69</groupId>
+            <artifactId>com.sample420</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/resources/spigot-1.8.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -89,7 +103,7 @@
         <dependency>
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
-            <version>2.0.8</version>
+            <version>2.9.2</version>
             <scope>provided</scope>
         </dependency>
 

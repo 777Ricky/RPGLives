@@ -139,13 +139,13 @@ public class RPGLivesCommand extends AbstractCommand {
             rpgItem.setItemMeta(rpgItemMeta);
 
             if (itemAmount == 1) {
-                sender.sendMessage(Utils.replaceColors("&aYou have given " + target.getName() + " " + args[2] + " " + RPGLives.get().getConfig().getString("LifeItemName")));
-                sender.sendMessage(Utils.replaceColors(Utils.replaceColors(RPGLives.get().getConfig().getString("GiveItemMessage").replaceAll("<player>", target.getName())))
-                        .replaceAll("<amount>", args[2]).replaceAll("<item>", RPGLives.get().getConfig().getString("LifeItemName")));
+                sender.sendMessage(Utils.replaceColors(Utils.replaceColors(RPGLives.get().getConfig().getString("GiveLifeItemMessage").replaceAll("%player%", target.getName())))
+                        .replaceAll("%amount%", args[2]).replaceAll("%item%", RPGLives.get().getConfig().getString("LifeItemName")));
                 target.getInventory().addItem(rpgItem);
                 return;
             } else {
-                sender.sendMessage(Utils.replaceColors("&aYou have given " + target.getName() + " " + args[2] + " " + RPGLives.get().getConfig().getString("LifeItemName") + "s"));
+                sender.sendMessage(Utils.replaceColors(Utils.replaceColors(RPGLives.get().getConfig().getString("GiveMultipleLifeItemMessage").replaceAll("%player%", target.getName())))
+                        .replaceAll("%amount%", args[2]).replaceAll("%item%", RPGLives.get().getConfig().getString("LifeItemName")));
                 target.getInventory().addItem(rpgItem);
                 return;
             }

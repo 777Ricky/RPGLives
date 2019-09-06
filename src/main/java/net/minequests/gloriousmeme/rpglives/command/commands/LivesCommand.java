@@ -18,15 +18,15 @@ public class LivesCommand extends AbstractCommand {
         Player player = (Player) sender;
         if (args.length == 0) {
             if (RPGLives.get().getConfig().getStringList("UnlimitedLivesWorlds").contains(player.getWorld().getName())) {
-                player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LivesCommandMessage").replaceAll("<lives>",
-                        String.valueOf(Utils.getLives(player))).replaceAll("<maxlives>", "unlimited")));
+                player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LivesCommandMessage").replaceAll("%lives%",
+                        String.valueOf(Utils.getLives(player))).replaceAll("%maxlives%", "unlimited")));
             } else {
-                player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LivesCommandMessage").replaceAll("<lives>",
-                        String.valueOf(Utils.getLives(player))).replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player)))));
+                player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LivesCommandMessage").replaceAll("%lives%",
+                        String.valueOf(Utils.getLives(player))).replaceAll("%maxlives%", String.valueOf(Utils.getMaxLives(player)))));
                 return;
             }
-            player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LivesCommandMessage").replaceAll("<lives>",
-                    String.valueOf(Utils.getLives(player))).replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player)))));
+            player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LivesCommandMessage").replaceAll("%lives%",
+                    String.valueOf(Utils.getLives(player))).replaceAll("%maxlives%", String.valueOf(Utils.getMaxLives(player)))));
         } else if (args.length == 1) {
             Player target = Bukkit.getServer().getPlayerExact(args[0]);
             if (!player.hasPermission("rpglives.lives.others")) {
@@ -38,11 +38,11 @@ public class LivesCommand extends AbstractCommand {
                 return;
             }
             if (RPGLives.get().getConfig().getStringList("UnlimitedLivesWorlds").contains(target.getWorld().getName())) {
-                player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LivesCommandMessage").replaceAll("<lives>",
-                        String.valueOf(Utils.getLives(target))).replaceAll("<maxlives>", "unlimited")));
+                player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LivesCommandMessage").replaceAll("%lives%",
+                        String.valueOf(Utils.getLives(target))).replaceAll("%maxlives%", "unlimited")));
             } else {
-                player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LivesCommandMessage").replaceAll("<lives>",
-                        String.valueOf(Utils.getLives(target))).replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(target)))));
+                player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LivesCommandMessage").replaceAll("%lives%",
+                        String.valueOf(Utils.getLives(target))).replaceAll("%maxlives%", String.valueOf(Utils.getMaxLives(target)))));
             }
         }
     }

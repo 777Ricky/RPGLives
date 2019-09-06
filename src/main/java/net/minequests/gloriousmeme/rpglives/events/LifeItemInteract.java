@@ -38,7 +38,7 @@ public class LifeItemInteract implements Listener {
                     player.getInventory().setItemInHand(hand);
                 }
                 else if (RPGLives.get().getVersion().contains("1_9") || RPGLives.get().getVersion().contains("1_10") || RPGLives.get().getVersion().contains("1_11")
-                        || RPGLives.get().getVersion().contains("1_12")) {
+                        || RPGLives.get().getVersion().contains("1_12") || RPGLives.get().getVersion().contains("1_13")) {
                     player.getInventory().setItemInMainHand(hand);
                 }
                 Utils.setLives(player, i);
@@ -50,7 +50,7 @@ public class LifeItemInteract implements Listener {
                     player.getInventory().setItemInHand(new ItemStack(Material.AIR));
                 }
                 else if (RPGLives.get().getVersion().contains("1_9") || RPGLives.get().getVersion().contains("1_10") || RPGLives.get().getVersion().contains("1_11")
-                        || RPGLives.get().getVersion().contains("1_12")) {
+                        || RPGLives.get().getVersion().contains("1_12") || RPGLives.get().getVersion().contains("1_13")) {
                     player.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
                 }
                 Utils.setLives(player, i);

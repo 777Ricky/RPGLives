@@ -1,7 +1,7 @@
 # Author: GloriousMeme
-# Version 2.3.9
-# Side note: all <lives> in messages get replaced with the number of lives you have
-# Side note: all <maxlives> in messages get replaced with your max number of lives you can have
+# Version 2.4.3
+# Side note: all %lives% in messages get replaced with the number of lives you have
+# Side note: all %maxlives% in messages get replaced with your max number of lives you can have
 
 # Default maximum amount of lives a player can have
 AmountOfLives: 3
@@ -45,14 +45,35 @@ UnlimitedLivesWorlds:
 # If this is true it will execute the commands below when the player dies on his last life
 ExecuteCommandsOnFinalLife: false
 
-# Commands for console to execute on player death use <player> to get the player's name
+# Commands for console to execute on player death use %player% to get the player's name
 Commands:
-    - "give <player> dirt 1"
+    - "give %player% dirt 1"
 
 # Life shop section
 
 # Is the shop enabled?
 ShopEnabled: true
+
+# Shop name
+ShopName: "&aLife Shop"
+
+# Shop item for buying a life
+ShopBuyItem: "STAINED_GLASS_PANE"
+
+# Item data for ShopBuyItem (eg: color of the stained glass) you only need to use this on versions lower than 1.13 if you are using 1.13+ set this to 0
+ShopBuyItemData: "5"
+
+# Shop item for closing the shop
+ShopCloseItem: "STAINED_GLASS_PANE"
+
+# Item data for ShopCloseItem (eg: color of the stained glass) you only need to use this on versions lower than 1.13 if you are using 1.13+ set this to 0
+ShopCloseItemData: "14"
+
+# Shop border items
+ShopBorderItem: "STAINED_GLASS_PANE"
+
+# Item data for ShopBorderItem (eg: color of the stained glass) you only need to use this on versions lower than 1.13 if you are using 1.13+ set this to 0
+ShopBorderItemData: "7"
 
 # What will the buy button be named?
 BuyItemName: "&aBuy 1 life"
@@ -62,6 +83,15 @@ CloseItemName: "&cClose shop"
 
 # What will the surrounding borders be named?
 BorderName: "&aClick the green glass to buy a life."
+
+# Message when they purchase a life
+PurchaseLifeMessage: "&aYou bought a life and now have %lives%/%maxlives% lives."
+
+# Message when you don't have enough money to purchase a life
+NotEnoughMoneyMessage: "&4You do not have enough money."
+
+# Message when a player closes the shop
+CloseShopMessage: "&cShop Closed."
 
 # What is the price of a life?
 LifePrice: 1000.0
@@ -79,14 +109,20 @@ LifeItemName: "&6Soul Shard"
 LifeItemLore:
     - "Soul Shard"
 
+# Message when you give a player the life item
+GiveLifeItemMessage: "&aYou have given %player% %amount% %item%."
+
+# Message when you give a player more than one life item
+GiveMultipleLifeItemMessage: "&aYou have given %player% %amount% %item%s."
+
 # The message that is sent to you when you run /lives
-LivesCommandMessage: "&6You currently have <lives>/<maxlives> lives."
+LivesCommandMessage: "&6You currently have %lives%/%maxlives% lives."
 
 # The message that is sent to you in chat when you gain a life
-GainLifeMessage: "&aYou gained another life and now have <lives>/<maxlives> lives."
+GainLifeMessage: "&aYou gained another life and now have %lives%/%maxlives% lives."
 
 # The message that is sent to you in chat when you lose a life
-LostLifeMessage: "&cYou lost a life and now have <lives>/<maxlives> lives left."
+LostLifeMessage: "&cYou lost a life and now have %lives%/%maxlives% lives left."
 
-# The message that gets sent when you dont have permission to do something
+# The message that gets sent when you don't have permission to do something
 NoPermsMessage: "&4You do not have permission to use this command."

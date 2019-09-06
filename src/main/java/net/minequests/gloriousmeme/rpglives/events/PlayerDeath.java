@@ -82,7 +82,7 @@ public class PlayerDeath implements Listener {
 
         if (Utils.getLives(player) == 1 && RPGLives.get().getConfig().getBoolean("ExecuteCommandsOnFinalLife")) {
             for (String s : RPGLives.get().getConfig().getStringList("Commands")) {
-                String commands = s.replace("<player>", player.getName());
+                String commands = s.replace("%player%", player.getName());
                 Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), commands);
             }
         }
