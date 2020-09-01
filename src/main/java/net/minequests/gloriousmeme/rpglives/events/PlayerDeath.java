@@ -1,5 +1,6 @@
 package net.minequests.gloriousmeme.rpglives.events;
 
+import me.rayzr522.jsonmessage.JSONMessage;
 import net.minequests.gloriousmeme.rpglives.RPGLives;
 import net.minequests.gloriousmeme.rpglives.utils.Utils;
 import org.bukkit.Bukkit;
@@ -22,40 +23,33 @@ public class PlayerDeath implements Listener {
 
     private Location location;
 
+    private void checkInvsave(Player player) {
+        if (invsave.containsKey(player) && armorsave.containsKey(player)) {
+            player.getInventory().setContents(invsave.get(player));
+            player.getInventory().setArmorContents(armorsave.get(player));
+            invsave.remove(player);
+            armorsave.remove(player);
+        }
+    }
+
     @EventHandler
     public void onRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
         if (player.hasPermission("rpglives.respawn") && location != null) {
             player.teleport(location);
         }
-        if (invsave.containsKey(player) && armorsave.containsKey(player)) {
-            player.getInventory().setContents(invsave.get(player));
-            player.getInventory().setArmorContents(armorsave.get(player));
-            invsave.remove(player);
-            armorsave.remove(player);
-        }
+
+        checkInvsave(player);
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        if (invsave.containsKey(player) && armorsave.containsKey(player)) {
-            player.getInventory().setContents(invsave.get(player));
-            player.getInventory().setArmorContents(armorsave.get(player));
-            invsave.remove(player);
-            armorsave.remove(player);
-        }
+        checkInvsave(event.getPlayer());
     }
 
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
-        Player player = event.getPlayer();
-        if (invsave.containsKey(player) && armorsave.containsKey(player)) {
-            player.getInventory().setContents(invsave.get(player));
-            player.getInventory().setArmorContents(armorsave.get(player));
-            invsave.remove(player);
-            armorsave.remove(player);
-        }
+        checkInvsave(event.getPlayer());
     }
 
     @EventHandler
@@ -100,19 +94,17 @@ public class PlayerDeath implements Listener {
             location = player.getLocation();
 
         if (player.getKiller() != null) {
-
             if (!RPGLives.get().getConfig().getStringList("SaveItemsOnPvPDeathWorlds").contains(player.getWorld().getName())) {
                 if (RPGLives.get().getConfig().getInt("PvPDeathAmount") == 0)
                     return;
                 int x = Utils.getLives(player) - RPGLives.get().getConfig().getInt("PvPDeathAmount");
                 Utils.setLives(player, x);
-                if (RPGLives.get().getConfig().getBoolean("TitleEnabled")) {
-                    RPGLives.get().actionbar.sendActionbar(player, Utils.replaceColors(RPGLives.get().getConfig().getString("LostLifeMessage").replaceAll("<lives>",
-                            String.valueOf(Utils.getLives(player)))).replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player))));
-                    return;
-                }
-                player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LostLifeMessage").replaceAll("<lives>",
-                        String.valueOf(Utils.getLives(player)))).replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player))));
+                Utils.sendPlayerActionbar(
+                        player,
+                        RPGLives.get().getConfig().getString("LostLifeMessage")
+                                .replaceAll("%lives%", String.valueOf(Utils.getLives(player)))
+                                .replaceAll("%maxlives%", String.valueOf(Utils.getMaxLives(player)))
+                );
             } else {
                 int x = Utils.getLives(player) - RPGLives.get().getConfig().getInt("PvPDeathAmount");
                 Utils.setLives(player, x);
@@ -121,13 +113,12 @@ public class PlayerDeath implements Listener {
                 player.getInventory().clear();
                 Utils.clearArmor(player);
                 event.getDrops().clear();
-                if (RPGLives.get().getConfig().getBoolean("TitleEnabled")) {
-                    RPGLives.get().actionbar.sendActionbar(player, Utils.replaceColors(RPGLives.get().getConfig().getString("LostLifeMessage").replaceAll("<lives>",
-                            String.valueOf(Utils.getLives(player)))).replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player))));
-                    return;
-                }
-                player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LostLifeMessage").replaceAll("<lives>",
-                        String.valueOf(Utils.getLives(player)))).replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player))));
+                Utils.sendPlayerActionbar(
+                        player,
+                        RPGLives.get().getConfig().getString("LostLifeMessage")
+                                .replaceAll("%lives%", String.valueOf(Utils.getLives(player)))
+                                .replaceAll("%maxlives%", String.valueOf(Utils.getMaxLives(player)))
+                );
             }
         } else {
             int i = Utils.getLives(player) - RPGLives.get().getConfig().getInt("NormalDeathAmount");
@@ -137,13 +128,12 @@ public class PlayerDeath implements Listener {
             player.getInventory().clear();
             Utils.clearArmor(player);
             event.getDrops().clear();
-            if (RPGLives.get().getConfig().getBoolean("TitleEnabled")) {
-                RPGLives.get().actionbar.sendActionbar(player, Utils.replaceColors(RPGLives.get().getConfig().getString("LostLifeMessage").replaceAll("<lives>",
-                        String.valueOf(Utils.getLives(player)))).replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player))));
-                return;
-            }
-            player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("LostLifeMessage").replaceAll("<lives>",
-                    String.valueOf(Utils.getLives(player)))).replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player))));
+            Utils.sendPlayerActionbar(
+                    player,
+                    RPGLives.get().getConfig().getString("LostLifeMessage")
+                            .replaceAll("%lives%", String.valueOf(Utils.getLives(player)))
+                            .replaceAll("%maxlives%", String.valueOf(Utils.getMaxLives(player)))
+            );
         }
     }
 }

@@ -7,7 +7,6 @@ import net.minequests.gloriousmeme.rpglives.events.*;
 import net.minequests.gloriousmeme.rpglives.utils.GUIUtils;
 import net.minequests.gloriousmeme.rpglives.utils.PlaceHolderAPIHook;
 import net.minequests.gloriousmeme.rpglives.utils.Utils;
-import net.minequests.gloriousmeme.rpglives.utils.versions.*;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -41,10 +40,6 @@ public class RPGLives extends JavaPlugin {
     private File livesf;
     private FileConfiguration livesl;
 
-    private String name = getServer().getClass().getPackage().getName();
-    private String version = name.substring(name.lastIndexOf('.') + 1);
-
-    public Actionbar actionbar;
     private GUIUtils guiUtils;
 
     private HashMap<UUID, Integer> taskID = new HashMap<>();
@@ -66,11 +61,6 @@ public class RPGLives extends JavaPlugin {
         AbstractCommand.registerCommands(this);
         getCommand("rpglives").setTabCompleter(new TabCompletionHandler());
         createFiles();
-
-        if (setupActionbar())
-            getLogger().info("Actionbar setup was successful!");
-        else
-            getLogger().severe("Failed to setup Actionbar please use a compatible server version or disable TitleEnabled in the config!");
 
 
         if (Bukkit.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
@@ -118,10 +108,6 @@ public class RPGLives extends JavaPlugin {
         return economy;
     }
 
-    public String getVersion() {
-        return version;
-    }
-
     public FileConfiguration getLivesl() {
         return livesl;
     }
@@ -156,39 +142,6 @@ public class RPGLives extends JavaPlugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private boolean setupActionbar() {
-
-        if (!getConfig().getBoolean("TitleEnabled"))
-            return false;
-
-        String version;
-
-        try {
-            version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            return false;
-        }
-
-        getLogger().info("Your server is running version " + version);
-
-        if (version.contains("v1_8_R1"))
-            actionbar = new Actionbar_1_8();
-        else if (version.contains("v1_8_R3"))
-            actionbar = new Actionbar_1_8_8();
-        else if (version.contains("v1_9_R2"))
-            actionbar = new Actionbar_1_9_4();
-        else if (version.contains("v1_10_R1"))
-            actionbar = new Actionbar_1_10();
-        else if (version.contains("v1_11_R1"))
-            actionbar = new Actionbar_1_11();
-        else if (version.contains("v1_12_R1"))
-            actionbar = new Actionbar_1_12();
-        else if (version.contains("v1_13_R2"))
-            actionbar = new Actionbar_1_13();
-
-        return actionbar != null;
     }
 
     public GUIUtils getGuiUtils() {
