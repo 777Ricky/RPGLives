@@ -3,7 +3,7 @@ package net.minequests.gloriousmeme.rpglives;
 import net.milkbowl.vault.economy.Economy;
 import net.minequests.gloriousmeme.rpglives.command.AbstractCommand;
 import net.minequests.gloriousmeme.rpglives.command.TabCompletionHandler;
-import net.minequests.gloriousmeme.rpglives.events.*;
+import net.minequests.gloriousmeme.rpglives.listeners.*;
 import net.minequests.gloriousmeme.rpglives.utils.GUIUtils;
 import net.minequests.gloriousmeme.rpglives.utils.PlaceHolderAPIHook;
 import net.minequests.gloriousmeme.rpglives.utils.Utils;

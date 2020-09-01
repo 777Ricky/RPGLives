@@ -1,4 +1,4 @@
-package net.minequests.gloriousmeme.rpglives.events;
+package net.minequests.gloriousmeme.rpglives.listeners;
 
 import net.minequests.gloriousmeme.rpglives.RPGLives;
 import net.minequests.gloriousmeme.rpglives.utils.Utils;

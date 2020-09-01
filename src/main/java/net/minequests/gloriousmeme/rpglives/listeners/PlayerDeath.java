@@ -1,6 +1,5 @@
-package net.minequests.gloriousmeme.rpglives.events;
+package net.minequests.gloriousmeme.rpglives.listeners;
 
-import me.rayzr522.jsonmessage.JSONMessage;
 import net.minequests.gloriousmeme.rpglives.RPGLives;
 import net.minequests.gloriousmeme.rpglives.utils.Utils;
 import org.bukkit.Bukkit;
