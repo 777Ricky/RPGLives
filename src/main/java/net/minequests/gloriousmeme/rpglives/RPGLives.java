@@ -40,9 +40,6 @@ public class RPGLives extends JavaPlugin {
     private File livesf;
     private FileConfiguration livesl;
 
-    private String name = getServer().getClass().getPackage().getName();
-    private String version = name.substring(name.lastIndexOf('.') + 1);
-
     private GUIUtils guiUtils;
 
     private HashMap<UUID, Integer> taskID = new HashMap<>();
@@ -109,10 +106,6 @@ public class RPGLives extends JavaPlugin {
 
     public Economy getEconomy() {
         return economy;
-    }
-
-    public String getVersion() {
-        return version;
     }
 
     public FileConfiguration getLivesl() {

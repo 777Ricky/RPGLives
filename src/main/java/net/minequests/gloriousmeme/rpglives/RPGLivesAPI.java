@@ -61,22 +61,22 @@ public class RPGLivesAPI {
     Used for setting a player's lives (Can not be larger than their max number of lives)
      */
     public void setLives(Player player, int i) {
-        if (RPGLives.get().getVersion().contains("1_8") || RPGLives.get().getVersion().contains("1_7"))
-            Utils.lives.put(player.getUniqueId(), i);
-        else
-            Utils.lives.put(player.getUniqueId(), i);
-        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+        try {
+            player.playSound(player.getLocation(), Sound.valueOf("ENTITY_PLAYER_LEVELUP"), 1, 1);
+        } catch (Exception ignored) { }
+
+        Utils.lives.put(player.getUniqueId(), i);
     }
 
     /*
     Used for setting a player's max lives
      */
     public void setMaxLives(Player player, int i) {
-        if (RPGLives.get().getVersion().contains("1_8") || RPGLives.get().getVersion().contains("1_7"))
-            Utils.maxlives.put(player.getUniqueId(), i);
-        else
-            Utils.maxlives.put(player.getUniqueId(), i);
-        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+        try {
+            player.playSound(player.getLocation(), Sound.valueOf("ENTITY_PLAYER_LEVELUP"), 1, 1);
+        } catch (Exception ignored) { }
+
+        Utils.maxlives.put(player.getUniqueId(), i);
     }
 
     /*
