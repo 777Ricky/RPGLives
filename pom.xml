@@ -22,10 +22,15 @@
     </build>
 
     <repositories>
+        <repository>
+            <id>spigot</id>
+            <name>spigot</name>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
 
         <repository>
-            <id>vault-repo</id>
-            <url>http://nexus.hc.to/content/repositories/pub_releases</url>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
 
         <repository>
@@ -36,67 +41,17 @@
     </repositories>
 
     <dependencies>
-
         <dependency>
-            <groupId>sample75</groupId>
-            <artifactId>com.sample426</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/resources/spigot-1.13.2.jar</systemPath>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>sample74</groupId>
-            <artifactId>com.sample425</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/resources/spigot-1.12.jar</systemPath>
-        </dependency>
-
-        <dependency>
-            <groupId>sample73</groupId>
-            <artifactId>com.sample424</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/resources/spigot-1.11.2.jar</systemPath>
-        </dependency>
-
-        <dependency>
-            <groupId>sample72</groupId>
-            <artifactId>com.sample423</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/resources/spigot-1.10.2.jar</systemPath>
-        </dependency>
-
-        <dependency>
-            <groupId>sample71</groupId>
-            <artifactId>com.sample422</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/resources/spigot-1.9.4.jar</systemPath>
-        </dependency>
-
-        <dependency>
-            <groupId>sample70</groupId>
-            <artifactId>com.sample421</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/resources/spigot-1.8.8.jar</systemPath>
-        </dependency>
-
-        <dependency>
-            <groupId>sample69</groupId>
-            <artifactId>com.sample420</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/resources/spigot-1.8.jar</systemPath>
-        </dependency>
-
-        <dependency>
-            <groupId>net.milkbowl.vault</groupId>
+            <groupId>com.github.MilkBowl</groupId>
             <artifactId>VaultAPI</artifactId>
-            <version>1.6</version>
+            <version>1.7</version>
             <scope>provided</scope>
         </dependency>
 
