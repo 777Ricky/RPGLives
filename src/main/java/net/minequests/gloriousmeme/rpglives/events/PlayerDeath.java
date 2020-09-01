@@ -102,8 +102,8 @@ public class PlayerDeath implements Listener {
                 Utils.sendPlayerActionbar(
                         player,
                         RPGLives.get().getConfig().getString("LostLifeMessage")
-                                .replaceAll("<lives>", String.valueOf(Utils.getLives(player)))
-                                .replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player)))
+                                .replaceAll("%lives%", String.valueOf(Utils.getLives(player)))
+                                .replaceAll("%maxlives%", String.valueOf(Utils.getMaxLives(player)))
                 );
             } else {
                 int x = Utils.getLives(player) - RPGLives.get().getConfig().getInt("PvPDeathAmount");
@@ -116,8 +116,8 @@ public class PlayerDeath implements Listener {
                 Utils.sendPlayerActionbar(
                         player,
                         RPGLives.get().getConfig().getString("LostLifeMessage")
-                                .replaceAll("<lives>", String.valueOf(Utils.getLives(player)))
-                                .replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player)))
+                                .replaceAll("%lives%", String.valueOf(Utils.getLives(player)))
+                                .replaceAll("%maxlives%", String.valueOf(Utils.getMaxLives(player)))
                 );
             }
         } else {
@@ -131,8 +131,8 @@ public class PlayerDeath implements Listener {
             Utils.sendPlayerActionbar(
                     player,
                     RPGLives.get().getConfig().getString("LostLifeMessage")
-                            .replaceAll("<lives>", String.valueOf(Utils.getLives(player)))
-                            .replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player)))
+                            .replaceAll("%lives%", String.valueOf(Utils.getLives(player)))
+                            .replaceAll("%maxlives%", String.valueOf(Utils.getMaxLives(player)))
             );
         }
     }

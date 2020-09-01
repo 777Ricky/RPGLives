@@ -22,7 +22,7 @@ public class GUIClick implements Listener {
         if (event.getCurrentItem() == null)
             return;
 
-        if (inventory.getName().equalsIgnoreCase(Utils.replaceColors(RPGLives.get().getConfig().getString("ShopName")))) {
+        if (event.getView().getTitle().equalsIgnoreCase(Utils.replaceColors(RPGLives.get().getConfig().getString("ShopName")))) {
             if (clickedSlot == 11) {
                 if (Utils.getLives(player) >= Utils.getMaxLives(player)) {
                     player.sendMessage(Utils.replaceColors("&4You already have your maximum amount of lives."));

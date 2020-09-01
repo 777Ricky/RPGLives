@@ -2,6 +2,7 @@ package net.minequests.gloriousmeme.rpglives.utils;
 
 import me.rayzr522.jsonmessage.JSONMessage;
 import net.minequests.gloriousmeme.rpglives.RPGLives;
+import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -85,6 +86,7 @@ public class Utils {
     public static void sendPlayerActionbar(Player player, String message) {
         if (RPGLives.get().getConfig().getBoolean("TitleEnabled")) {
             JSONMessage.create(replaceColors(message))
+                    .color(ChatColor.WHITE)
                     .actionbar(player);
         }
         player.sendMessage(replaceColors(message));
