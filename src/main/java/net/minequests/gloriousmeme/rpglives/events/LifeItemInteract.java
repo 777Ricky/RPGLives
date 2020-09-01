@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class LifeItemInteract implements Listener {
 
+    @SuppressWarnings("deprecation")
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
@@ -31,31 +32,17 @@ public class LifeItemInteract implements Listener {
             int amount = hand.getAmount();
 
             if (amount > 1) {
-                int i = Utils.getLives(player);
-                i++;
                 hand.setAmount(amount - 1);
-                if (RPGLives.get().getVersion().contains("1_8")) {
-                    player.getInventory().setItemInHand(hand);
-                }
-                else if (RPGLives.get().getVersion().contains("1_9") || RPGLives.get().getVersion().contains("1_10") || RPGLives.get().getVersion().contains("1_11")
-                        || RPGLives.get().getVersion().contains("1_12") || RPGLives.get().getVersion().contains("1_13")) {
-                    player.getInventory().setItemInMainHand(hand);
-                }
-                Utils.setLives(player, i);
-                player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("GainLifeMessage").replaceAll("<lives>", String.valueOf(Utils.getLives(player)))).replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player))));
+                player.getInventory().setItemInHand(hand);
             } else {
-                int i = Utils.getLives(player);
-                i++;
-                if (RPGLives.get().getVersion().contains("1_8")) {
-                    player.getInventory().setItemInHand(new ItemStack(Material.AIR));
-                }
-                else if (RPGLives.get().getVersion().contains("1_9") || RPGLives.get().getVersion().contains("1_10") || RPGLives.get().getVersion().contains("1_11")
-                        || RPGLives.get().getVersion().contains("1_12") || RPGLives.get().getVersion().contains("1_13")) {
-                    player.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
-                }
-                Utils.setLives(player, i);
-                player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("GainLifeMessage").replaceAll("<lives>", String.valueOf(Utils.getLives(player)))).replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player))));
+                player.getInventory().setItemInHand(new ItemStack(Material.AIR));
             }
+
+            int i = Utils.getLives(player);
+            i++;
+            Utils.setLives(player, i);
+            player.sendMessage(Utils.replaceColors(RPGLives.get().getConfig().getString("GainLifeMessage").replaceAll("<lives>", String.valueOf(Utils.getLives(player)))).replaceAll("<maxlives>", String.valueOf(Utils.getMaxLives(player))));
+
         }
     }
 }

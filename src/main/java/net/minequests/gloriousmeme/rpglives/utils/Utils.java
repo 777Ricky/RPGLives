@@ -1,5 +1,6 @@
 package net.minequests.gloriousmeme.rpglives.utils;
 
+import me.rayzr522.jsonmessage.JSONMessage;
 import net.minequests.gloriousmeme.rpglives.RPGLives;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
@@ -60,27 +61,33 @@ public class Utils {
     }
 
     public static void setLives(Player player, int i) {
-        if (RPGLives.get().getVersion().contains("1_8") || RPGLives.get().getVersion().contains("1_7"))
-            lives.put(player.getUniqueId(), i);
-        else
-            lives.put(player.getUniqueId(), i);
-        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+        try {
+            player.playSound(player.getLocation(), Sound.valueOf("ENTITY_PLAYER_LEVELUP"), 1, 1);
+        } catch (Exception ignore) { }
+
+        lives.put(player.getUniqueId(), i);
     }
 
     public static void setMaxLives(Player player, int i) {
-        if (RPGLives.get().getVersion().contains("1_8") || RPGLives.get().getVersion().contains("1_7"))
-            maxlives.put(player.getUniqueId(), i);
-        else
-            maxlives.put(player.getUniqueId(), i);
-        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+        try {
+            player.playSound(player.getLocation(), Sound.valueOf("ENTITY_PLAYER_LEVELUP"), 1, 1);
+        } catch (Exception ignore) { }
+
+        maxlives.put(player.getUniqueId(), i);
     }
 
     public static void setRegenTime(Player player, int i) {
-        if (regentime.containsKey(player.getUniqueId()))
-            regentime.remove(player.getUniqueId());
         regentime.put(player.getUniqueId(), i);
         RPGLives.get().endTask(player);
         RPGLives.get().scheduleRepeatingTask(player, i);
+    }
+
+    public static void sendPlayerActionbar(Player player, String message) {
+        if (RPGLives.get().getConfig().getBoolean("TitleEnabled")) {
+            JSONMessage.create(replaceColors(message))
+                    .actionbar(player);
+        }
+        player.sendMessage(replaceColors(message));
     }
 
     public static void sendHelpMessage(CommandSender sender) {
