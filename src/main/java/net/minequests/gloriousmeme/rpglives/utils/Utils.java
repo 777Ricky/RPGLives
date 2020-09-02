@@ -50,15 +50,15 @@ public class Utils {
     }
 
     public static int getConfigLives(Player player) {
-        return RPGLives.get().getLivesl().getInt(player.getUniqueId() + ".lives");
+        return RPGLives.get().getLivesConfig().getInt(player.getUniqueId() + ".lives");
     }
 
     public static int getConfigMaxLives(Player player) {
-        return RPGLives.get().getLivesl().getInt(player.getUniqueId() + ".maxlives");
+        return RPGLives.get().getLivesConfig().getInt(player.getUniqueId() + ".maxlives");
     }
 
     public static int getConfigRegenTime(Player player) {
-        return RPGLives.get().getLivesl().getInt(player.getUniqueId() + ".regentime");
+        return RPGLives.get().getLivesConfig().getInt(player.getUniqueId() + ".regentime");
     }
 
     public static void setLives(Player player, int i) {

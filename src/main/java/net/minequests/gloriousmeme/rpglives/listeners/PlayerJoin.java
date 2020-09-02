@@ -24,7 +24,7 @@ public class PlayerJoin implements Listener {
             RPGLives.get().scheduleRepeatingTask(player, Utils.getRegenTime(player));
             return;
         }
-        if (!RPGLives.get().getLivesl().contains(player.getUniqueId().toString())) {
+        if (!RPGLives.get().getLivesConfig().contains(player.getUniqueId().toString())) {
             Utils.lives.put(player.getUniqueId(), RPGLives.get().getConfig().getInt("AmountOfLives"));
             Utils.maxlives.put(player.getUniqueId(), RPGLives.get().getConfig().getInt("AmountOfLives"));
             Utils.regentime.put(player.getUniqueId(), RPGLives.get().getConfig().getInt("RegenTime"));

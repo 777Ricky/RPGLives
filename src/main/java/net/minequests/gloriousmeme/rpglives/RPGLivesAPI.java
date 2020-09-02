@@ -40,21 +40,21 @@ public class RPGLivesAPI {
     Used for getting an offline player's current lives
      */
     public int getConfigLives(Player player) {
-        return RPGLives.get().getLivesl().getInt(player.getUniqueId() + ".lives");
+        return RPGLives.get().getLivesConfig().getInt(player.getUniqueId() + ".lives");
     }
 
     /*
     Used for getting an offline player's current max number of lives
      */
     public int getConfigMaxLives(Player player) {
-        return RPGLives.get().getLivesl().getInt(player.getUniqueId() + ".maxlives");
+        return RPGLives.get().getLivesConfig().getInt(player.getUniqueId() + ".maxlives");
     }
 
     /*
     Used for getting an offline player's current regen time
      */
     public int getConfigRegenTime(Player player) {
-        return RPGLives.get().getLivesl().getInt(player.getUniqueId() + ".regentime");
+        return RPGLives.get().getLivesConfig().getInt(player.getUniqueId() + ".regentime");
     }
 
     /*

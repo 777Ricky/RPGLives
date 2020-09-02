@@ -37,8 +37,8 @@ public class RPGLives extends JavaPlugin {
 
     private static Economy economy = null;
 
-    private File livesf;
-    private FileConfiguration livesl;
+    private File livesFile;
+    private FileConfiguration livesConfig;
 
     private GUIUtils guiUtils;
 
@@ -109,20 +109,20 @@ public class RPGLives extends JavaPlugin {
         return economy;
     }
 
-    public FileConfiguration getLivesl() {
-        return livesl;
+    public FileConfiguration getLivesConfig() {
+        return livesConfig;
     }
 
     private void createFiles() {
-        livesf = new File(getDataFolder(), "lives.yml");
+        livesFile = new File(getDataFolder(), "lives.yml");
 
-        if (!livesf.exists()) {
-            livesf.getParentFile().mkdirs();
+        if (!livesFile.exists()) {
+            livesFile.getParentFile().mkdirs();
             saveResource("lives.yml", false);
         }
-        livesl = new YamlConfiguration();
+        livesConfig = new YamlConfiguration();
         try {
-            livesl.load(livesf);
+            livesConfig.load(livesFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
@@ -130,16 +130,16 @@ public class RPGLives extends JavaPlugin {
 
     private void saveHashmapData() {
         for (Map.Entry<UUID, Integer> entry : Utils.lives.entrySet()) {
-            livesl.set(entry.getKey() + ".lives", entry.getValue());
+            livesConfig.set(entry.getKey() + ".lives", entry.getValue());
         }
         for (Map.Entry<UUID, Integer> entry : Utils.maxlives.entrySet()) {
-            livesl.set(entry.getKey() + ".maxlives", entry.getValue());
+            livesConfig.set(entry.getKey() + ".maxlives", entry.getValue());
         }
         for (Map.Entry<UUID, Integer> entry : Utils.regentime.entrySet()) {
-            livesl.set(entry.getKey() + ".regentime", entry.getValue());
+            livesConfig.set(entry.getKey() + ".regentime", entry.getValue());
         }
         try {
-            livesl.save(livesf);
+            livesConfig.save(livesFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
