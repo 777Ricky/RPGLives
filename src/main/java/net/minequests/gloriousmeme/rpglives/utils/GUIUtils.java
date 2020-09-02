@@ -1,8 +1,8 @@
 package net.minequests.gloriousmeme.rpglives.utils;
 
+import com.cryptomorin.xseries.XMaterial;
 import net.minequests.gloriousmeme.rpglives.RPGLives;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -18,7 +18,8 @@ public class GUIUtils {
             RPGLives.get().getConfig().getString("ShopName")));
 
     {
-        ItemStack buyLife = new ItemStack(Material.valueOf(RPGLives.get().getConfig().getString("ShopBuyItem")), 1,
+        ItemStack buyLife = new ItemStack(XMaterial.matchXMaterial(RPGLives.get().getConfig().getString("ShopBuyItem"))
+                .orElse(XMaterial.STONE).parseMaterial(), 1,
                 Short.valueOf(RPGLives.get().getConfig().getString("ShopBuyItemData")));
         ItemMeta buyLifeMeta = buyLife.getItemMeta();
         buyLifeMeta.setDisplayName(Utils.replaceColors(RPGLives.get().getConfig().getString("BuyItemName")));
@@ -27,13 +28,15 @@ public class GUIUtils {
         buyLifeMeta.setLore(buyLifeLore);
         buyLife.setItemMeta(buyLifeMeta);
 
-        ItemStack closeGUI = new ItemStack(Material.valueOf(RPGLives.get().getConfig().getString("ShopCloseItem")), 1,
+        ItemStack closeGUI = new ItemStack(XMaterial.matchXMaterial(RPGLives.get().getConfig().getString("ShopCloseItem"))
+                .orElse(XMaterial.BARRIER).parseMaterial(), 1,
                 Short.valueOf(RPGLives.get().getConfig().getString("ShopCloseItemData")));
         ItemMeta closeGUIMeta = closeGUI.getItemMeta();
         closeGUIMeta.setDisplayName(Utils.replaceColors(RPGLives.get().getConfig().getString("CloseItemName")));
         closeGUI.setItemMeta(closeGUIMeta);
 
-        ItemStack borders = new ItemStack(Material.valueOf(RPGLives.get().getConfig().getString("ShopBorderItem")), 1,
+        ItemStack borders = new ItemStack(XMaterial.matchXMaterial(RPGLives.get().getConfig().getString("ShopBorderItem"))
+                .orElse(XMaterial.BLACK_STAINED_GLASS).parseMaterial(), 1,
                 Short.valueOf(RPGLives.get().getConfig().getString("ShopBorderItemData")));
         ItemMeta borderMeta = borders.getItemMeta();
         borderMeta.setDisplayName(Utils.replaceColors(RPGLives.get().getConfig().getString("BorderName")));

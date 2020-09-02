@@ -81,6 +81,7 @@ public class RPGLives extends JavaPlugin {
 
     private void registerEvents() {
         PluginManager pm = Bukkit.getServer().getPluginManager();
+
         pm.registerEvents(new PlayerJoin(), this);
         pm.registerEvents(new PlayerDeath(), this);
         pm.registerEvents(new LifeItemInteract(), this);

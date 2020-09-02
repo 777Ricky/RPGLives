@@ -5,17 +5,19 @@ import net.minequests.gloriousmeme.rpglives.utils.Utils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class LifeItemPlace implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
+        ItemStack item = event.getItemInHand();
 
-        if (!event.getItemInHand().hasItemMeta())
+        if (!item.hasItemMeta())
             return;
-        if (event.getItemInHand().getItemMeta().getDisplayName() == null)
+        if (item.getItemMeta().getDisplayName() == null)
             return;
-        if (event.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(Utils.replaceColors(RPGLives.get().getConfig().getString("LifeItemName"))))
+        if (item.getItemMeta().getDisplayName().equalsIgnoreCase(Utils.replaceColors(RPGLives.get().getConfig().getString("LifeItemName"))))
             event.setCancelled(true);
     }
 }

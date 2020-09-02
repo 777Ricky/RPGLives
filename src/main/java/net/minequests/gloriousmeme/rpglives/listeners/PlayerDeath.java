@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 
 public class PlayerDeath implements Listener {
-
     private HashMap<Player, ItemStack[]> invsave = new HashMap<>();
     private HashMap<Player, ItemStack[]> armorsave = new HashMap<>();
 

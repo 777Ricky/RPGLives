@@ -58,6 +58,12 @@
             <artifactId>jsonmessage</artifactId>
             <version>1.2.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.cryptomorin</groupId>
+            <artifactId>XSeries</artifactId>
+            <version>7.2.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -101,7 +107,12 @@
                     <relocations>
                         <relocation>
                             <pattern>me.rayzr522.jsonmessage.</pattern>
-                            <shadedPattern>net.minequests.gloriousmeme.rpglives.lib.</shadedPattern>
+                            <shadedPattern>net.minequests.gloriousmeme.rpglives.lib.jsonmessage.</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>com.cryptomorin.xseries.</pattern>
+                            <shadedPattern>net.minequests.gloriousmeme.rpglives.lib.xseries.</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
