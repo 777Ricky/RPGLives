@@ -32,7 +32,7 @@ public class RPGLives extends JavaPlugin {
     TODO: Add ability to select specific slots you lose on pve / pvp death (Maybe)
      */
 
-    private static RPGLives plugin;
+    private static RPGLives instance;
     private static RPGLivesAPI rpgLivesAPI;
 
     private static Economy economy = null;
@@ -46,9 +46,9 @@ public class RPGLives extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        plugin = this;
+        instance = this;
         rpgLivesAPI = new RPGLivesAPI();
-        guiUtils = new GUIUtils();
+        guiUtils = new GUIUtils(this);
 
         if (setupEconomy()) {
             getLogger().info("Successfully hooked into vault.");
@@ -74,7 +74,7 @@ public class RPGLives extends JavaPlugin {
     public void onDisable() {
         saveHashmapData();
 
-        plugin = null;
+        instance = null;
         rpgLivesAPI = null;
         guiUtils = null;
     }
@@ -90,7 +90,7 @@ public class RPGLives extends JavaPlugin {
     }
 
     public static RPGLives get() {
-        return plugin;
+        return instance;
     }
 
     public static RPGLivesAPI getAPI() {
