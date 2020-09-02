@@ -1,9 +1,9 @@
 package net.minequests.gloriousmeme.rpglives.utils;
 
+import com.cryptomorin.xseries.XSound;
 import me.rayzr522.jsonmessage.JSONMessage;
 import net.minequests.gloriousmeme.rpglives.RPGLives;
 import org.bukkit.ChatColor;
-import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -62,17 +62,13 @@ public class Utils {
     }
 
     public static void setLives(Player player, int i) {
-        try {
-            player.playSound(player.getLocation(), Sound.valueOf("ENTITY_PLAYER_LEVELUP"), 1, 1);
-        } catch (Exception ignore) { }
+        XSound.ENTITY_PLAYER_LEVELUP.play(player);
 
         lives.put(player.getUniqueId(), i);
     }
 
     public static void setMaxLives(Player player, int i) {
-        try {
-            player.playSound(player.getLocation(), Sound.valueOf("ENTITY_PLAYER_LEVELUP"), 1, 1);
-        } catch (Exception ignore) { }
+        XSound.ENTITY_PLAYER_LEVELUP.play(player);
 
         maxlives.put(player.getUniqueId(), i);
     }
