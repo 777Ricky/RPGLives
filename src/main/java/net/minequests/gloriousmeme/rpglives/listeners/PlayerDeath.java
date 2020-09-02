@@ -14,10 +14,11 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class PlayerDeath implements Listener {
-    private HashMap<Player, ItemStack[]> invsave = new HashMap<>();
-    private HashMap<Player, ItemStack[]> armorsave = new HashMap<>();
+    private Map<Player, ItemStack[]> invsave = new HashMap<>();
+    private Map<Player, ItemStack[]> armorsave = new HashMap<>();
 
     private Location location;
 

@@ -3,56 +3,84 @@ package net.minequests.gloriousmeme.rpglives.utils;
 import com.cryptomorin.xseries.XMaterial;
 import net.minequests.gloriousmeme.rpglives.RPGLives;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Optional;
 
 /**
  * Created by GloriousMeme on 11/16/2016.
  */
 public class GUIUtils {
 
-    private Inventory livesShop = Bukkit.getServer().createInventory(null, 27, Utils.replaceColors(
-            RPGLives.get().getConfig().getString("ShopName")));
+    private final RPGLives plugin;
+    private Inventory livesShop;
 
-    {
-        ItemStack buyLife = new ItemStack(XMaterial.matchXMaterial(RPGLives.get().getConfig().getString("ShopBuyItem"))
-                .orElse(XMaterial.STONE).parseMaterial(), 1,
-                Short.valueOf(RPGLives.get().getConfig().getString("ShopBuyItemData")));
+    public static Optional<Material> parseMaterial(String input) {
+        return XMaterial.matchXMaterial(input)
+                .map(XMaterial::parseMaterial);
+    }
+
+    public GUIUtils(RPGLives plugin) {
+        this.plugin = plugin;
+
+        ConfigurationSection config = plugin.getConfig();
+
+        livesShop = Bukkit.getServer().createInventory(
+                null,
+                27,
+                Utils.replaceColors(config.getString("ShopName"))
+        );
+
+        ItemStack buyLife = new ItemStack(
+                parseMaterial(config.getString("ShopBuyItem"))
+                        .orElse(Material.STONE),
+                1,
+                Short.parseShort(config.getString("ShopBuyItemData"))
+        );
         ItemMeta buyLifeMeta = buyLife.getItemMeta();
-        buyLifeMeta.setDisplayName(Utils.replaceColors(RPGLives.get().getConfig().getString("BuyItemName")));
-        ArrayList<String> buyLifeLore = new ArrayList<>();
-        buyLifeLore.add(String.valueOf(RPGLives.get().getConfig().getDouble("LifePrice")));
-        buyLifeMeta.setLore(buyLifeLore);
+        buyLifeMeta.setDisplayName(Utils.replaceColors(config.getString("BuyItemName")));
+        buyLifeMeta.setLore(Collections.singletonList(
+                config.getString("LifePrice")
+        ));
         buyLife.setItemMeta(buyLifeMeta);
 
-        ItemStack closeGUI = new ItemStack(XMaterial.matchXMaterial(RPGLives.get().getConfig().getString("ShopCloseItem"))
-                .orElse(XMaterial.BARRIER).parseMaterial(), 1,
-                Short.valueOf(RPGLives.get().getConfig().getString("ShopCloseItemData")));
+        ItemStack closeGUI = new ItemStack(
+                parseMaterial(config.getString("ShopCloseItem"))
+                        .orElse(Material.STONE),
+                1,
+                Short.parseShort(config.getString("ShopCloseItemData"))
+        );
         ItemMeta closeGUIMeta = closeGUI.getItemMeta();
-        closeGUIMeta.setDisplayName(Utils.replaceColors(RPGLives.get().getConfig().getString("CloseItemName")));
+        closeGUIMeta.setDisplayName(Utils.replaceColors(config.getString("CloseItemName")));
         closeGUI.setItemMeta(closeGUIMeta);
 
-        ItemStack borders = new ItemStack(XMaterial.matchXMaterial(RPGLives.get().getConfig().getString("ShopBorderItem"))
-                .orElse(XMaterial.BLACK_STAINED_GLASS).parseMaterial(), 1,
-                Short.valueOf(RPGLives.get().getConfig().getString("ShopBorderItemData")));
+        ItemStack borders = new ItemStack(
+                parseMaterial(config.getString("ShopBorderItem"))
+                        .orElse(Material.STONE),
+                1,
+                Short.parseShort(config.getString("ShopBorderItemData"))
+        );
         ItemMeta borderMeta = borders.getItemMeta();
-        borderMeta.setDisplayName(Utils.replaceColors(RPGLives.get().getConfig().getString("BorderName")));
+        borderMeta.setDisplayName(Utils.replaceColors(config.getString("BorderName")));
         borders.setItemMeta(borderMeta);
 
         livesShop.setItem(11, buyLife);
         livesShop.setItem(15, closeGUI);
 
-        for(int i = 0; i < 27; i++) {
-            if(livesShop.getItem(i) == null)
+        for (int i = 0; i < 27; i++) {
+            if (livesShop.getItem(i) == null) {
                 livesShop.setItem(i, borders);
+            }
         }
     }
 
     public double getLifePrice() {
-        return RPGLives.get().getConfig().getDouble("LifePrice");
+        return plugin.getConfig().getDouble("LifePrice");
     }
 
     public Inventory getLivesShop() {

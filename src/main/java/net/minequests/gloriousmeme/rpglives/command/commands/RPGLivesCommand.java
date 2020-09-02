@@ -2,6 +2,7 @@ package net.minequests.gloriousmeme.rpglives.command.commands;
 
 import net.minequests.gloriousmeme.rpglives.RPGLives;
 import net.minequests.gloriousmeme.rpglives.command.AbstractCommand;
+import net.minequests.gloriousmeme.rpglives.utils.GUIUtils;
 import net.minequests.gloriousmeme.rpglives.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -132,7 +133,11 @@ public class RPGLivesCommand extends AbstractCommand {
                 return;
             }
             int itemAmount = Integer.parseInt(args[2]);
-            ItemStack rpgItem = new ItemStack(Material.valueOf(RPGLives.get().getConfig().getString("LifeItemType")), itemAmount);
+            ItemStack rpgItem = new ItemStack(
+                    GUIUtils.parseMaterial(RPGLives.get().getConfig().getString("LifeItemType"))
+                            .orElse(Material.STONE),
+                    itemAmount
+            );
             ItemMeta rpgItemMeta = rpgItem.getItemMeta();
             rpgItemMeta.setDisplayName(Utils.replaceColors(RPGLives.get().getConfig().getString("LifeItemName")));
             rpgItemMeta.setLore(RPGLives.get().getConfig().getStringList("LifeItemLore"));
