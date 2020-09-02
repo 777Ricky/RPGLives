@@ -1,7 +1,8 @@
-package net.minequests.gloriousmeme.rpglives.utils;
+package net.minequests.gloriousmeme.rpglives.utils.gui;
 
 import com.cryptomorin.xseries.XMaterial;
 import net.minequests.gloriousmeme.rpglives.RPGLives;
+import net.minequests.gloriousmeme.rpglives.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -16,7 +17,6 @@ import java.util.Optional;
  * Created by GloriousMeme on 11/16/2016.
  */
 public class GUIUtils {
-
     private final RPGLives plugin;
     private Inventory livesShop;
 
@@ -59,22 +59,22 @@ public class GUIUtils {
         closeGUIMeta.setDisplayName(Utils.replaceColors(config.getString("CloseItemName")));
         closeGUI.setItemMeta(closeGUIMeta);
 
-        ItemStack borders = new ItemStack(
+        ItemStack border = new ItemStack(
                 parseMaterial(config.getString("ShopBorderItem"))
                         .orElse(Material.STONE),
                 1,
                 Short.parseShort(config.getString("ShopBorderItemData"))
         );
-        ItemMeta borderMeta = borders.getItemMeta();
+        ItemMeta borderMeta = border.getItemMeta();
         borderMeta.setDisplayName(Utils.replaceColors(config.getString("BorderName")));
-        borders.setItemMeta(borderMeta);
+        border.setItemMeta(borderMeta);
 
         livesShop.setItem(11, buyLife);
         livesShop.setItem(15, closeGUI);
 
         for (int i = 0; i < 27; i++) {
             if (livesShop.getItem(i) == null) {
-                livesShop.setItem(i, borders);
+                livesShop.setItem(i, border);
             }
         }
     }

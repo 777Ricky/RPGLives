@@ -2,7 +2,7 @@ package net.minequests.gloriousmeme.rpglives.command.commands;
 
 import net.minequests.gloriousmeme.rpglives.RPGLives;
 import net.minequests.gloriousmeme.rpglives.command.AbstractCommand;
-import net.minequests.gloriousmeme.rpglives.utils.GUIUtils;
+import net.minequests.gloriousmeme.rpglives.utils.gui.GUIUtils;
 import net.minequests.gloriousmeme.rpglives.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

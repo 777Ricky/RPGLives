@@ -4,9 +4,9 @@ import net.milkbowl.vault.economy.Economy;
 import net.minequests.gloriousmeme.rpglives.command.AbstractCommand;
 import net.minequests.gloriousmeme.rpglives.command.TabCompletionHandler;
 import net.minequests.gloriousmeme.rpglives.listeners.*;
-import net.minequests.gloriousmeme.rpglives.utils.GUIUtils;
-import net.minequests.gloriousmeme.rpglives.utils.PlaceHolderAPIHook;
 import net.minequests.gloriousmeme.rpglives.utils.Utils;
+import net.minequests.gloriousmeme.rpglives.utils.gui.GUIUtils;
+import net.minequests.gloriousmeme.rpglives.utils.placeholders.Placeholders;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -65,7 +65,7 @@ public class RPGLives extends JavaPlugin {
 
 
         if (Bukkit.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            new PlaceHolderAPIHook(this).hook();
+            new Placeholders(this).register();
             getLogger().info("Hooked into PlaceholderAPI.");
         } else
             getLogger().info("Could not find PlaceholderAPI continuing without it.");
