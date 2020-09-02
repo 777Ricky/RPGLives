@@ -8,6 +8,7 @@ import net.minequests.gloriousmeme.rpglives.utils.GUIUtils;
 import net.minequests.gloriousmeme.rpglives.utils.PlaceHolderAPIHook;
 import net.minequests.gloriousmeme.rpglives.utils.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -42,7 +43,7 @@ public class RPGLives extends JavaPlugin {
 
     private GUIUtils guiUtils;
 
-    private HashMap<UUID, Integer> taskID = new HashMap<>();
+    private Map<UUID, Integer> taskID = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -151,12 +152,18 @@ public class RPGLives extends JavaPlugin {
 
     public void scheduleRepeatingTask(final Player player, long ticks) {
         final int tid = getServer().getScheduler().scheduleSyncRepeatingTask(this, () -> {
-            if (!getConfig().getBoolean("LifeRegen"))
+            FileConfiguration config = getConfig();
+            World world = player.getWorld();
+
+            if (!config.getBoolean("LifeRegen")) {
                 return;
-            if (getConfig().getBoolean("UseLifePermission") && !player.hasPermission("LifePermission"))
+            }
+            if (config.getBoolean("UseLifePermission") && !player.hasPermission("LifePermission")) {
                 return;
-            if (getConfig().getBoolean("UsePerWorld") && getConfig().getStringList("Worlds").contains(player.getWorld().getName()))
+            }
+            if (config.getBoolean("UsePerWorld") && config.getStringList("Worlds").contains(world.getName())) {
                 return;
+            }
             if (Utils.getLives(player) > Utils.getMaxLives(player)) {
                 Utils.setLives(player, Utils.getMaxLives(player));
                 return;
@@ -165,8 +172,11 @@ public class RPGLives extends JavaPlugin {
                 int i = Utils.getLives(player);
                 i++;
                 Utils.setLives(player, i);
-                player.sendMessage(Utils.replaceColors(getConfig().getString("GainLifeMessage").replace("<lives>",
-                        String.valueOf(Utils.getLives(player)))).replace("<maxlives>", String.valueOf(Utils.getMaxLives(player))));
+                player.sendMessage(Utils.replaceColors(
+                        config.getString("GainLifeMessage")
+                                .replace("%lives%", String.valueOf(Utils.getLives(player)))
+                                .replace("%maxlives%", String.valueOf(Utils.getMaxLives(player)))
+                ));
             }
         }, ticks * 1200, ticks * 1200);
         taskID.put(player.getUniqueId(), tid);
